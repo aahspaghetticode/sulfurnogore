@@ -8,12 +8,14 @@ Removes the blood and gore effects from SULFUR, with an in-game options page so 
 [*]Gibs (body chunks) and gib explosions
 [*]Melee slash marks and bullet-hole decals
 [*]Blood hit effects when enemies take damage
+[*]Optionally, any blood that is still shown is tinted brown, like dirt
 [/list]
 
 [size=4][b]What it does NOT remove[/b][/size]
 [list]
 [*]The red screen flash when you are hurt (removing it caused crashes)
 [*]The low-health dark pulse
+[*]Pre-placed dead bodies that exist as level decoration (not fixed yet)
 [*]Anything not listed above. Only the effects that were found and tested are covered, so some gore may still appear (boss fights, the death screen, special attacks). Please report any you see.
 [/list]
 
@@ -31,11 +33,11 @@ Removes the blood and gore effects from SULFUR, with an in-game options page so 
 [/list]
 
 [size=4][b]Configuration[/b][/size]
-Open Options and find the [b]No Gore[/b] page. It has a master switch and one toggle per patched game method. Changes apply immediately. Settings are also saved in BepInEx/config/com.henw.sulfurnogore.cfg.
+Open Options and find the [b]No Gore[/b] page. It has a master switch and one toggle per kind of effect (blood splatters, blood stains, gibs, hit effects and slash marks, bullet holes). Changes apply immediately. Settings are also saved in BepInEx/config/com.henw.sulfurnogore.cfg.
 
 [size=4][b]Troubleshooting[/b][/size]
 [list]
-[*]Enemies freeze, you can't die, or the console fills with NullReferenceException: turn the master switch off to confirm, then switch individual entries off until it stops, and report which one.
+[*]Enemies freeze, you can't die, or the console fills with NullReferenceException: turn the master switch off to confirm, then switch individual effects off until it stops (start with Hit effects and slash marks), and report which one.
 [*]Nothing happens after a game update: the patches depend on internal names that can change. Check BepInEx/LogOutput.log for "Type not found" or "Method not found".
 [/list]
 

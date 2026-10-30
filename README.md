@@ -10,11 +10,13 @@ still want to play.
 - Gibs (body chunks) and gib explosions
 - Melee slash marks and bullet-hole decals
 - Blood hit effects when enemies take damage
+- Optionally, any blood that is still shown is tinted brown, like dirt
 
 ## What it does **not** remove
 
 - The red screen flash when you are hurt. (Removing it caused crashes, so it is left alone.)
 - The low-health dark pulse.
+- Pre-placed dead bodies that exist as level decoration. These are not fixed yet.
 - Anything not listed above. This mod only covers the effects that were found and tested,
   so some gore may still appear, for example in boss fights, the death screen, or special
   attacks. If you see any, please report it (see below).
@@ -36,9 +38,11 @@ Install with a mod manager (it will pull in the dependency), or manually:
 
 Open **Options** and look for the **No Gore** page. It has:
 
-- **Enabled**: master switch for everything.
-- **Patched methods**: one toggle per patched game method. Switch one off if it causes
-  problems, and the rest keep working. Changes apply immediately, no restart needed.
+- **Enable mod**: master switch for everything.
+- **Brown blood**: any blood that is still shown is tinted brown, like dirt.
+- **Effects to remove**: one switch per kind of effect (blood splatters, blood stains,
+  gibs and body chunks, hit effects and slash marks, bullet holes). Switch one off if it
+  causes problems, and the rest keep working. Changes apply immediately, no restart needed.
 
 The same settings are saved in `BepInEx/config/com.henw.sulfurnogore.cfg`.
 
@@ -47,7 +51,8 @@ The same settings are saved in `BepInEx/config/com.henw.sulfurnogore.cfg`.
 - **Enemies freeze, you can't die, or the console is full of `NullReferenceException`:**
   one of the patches is clashing with something else (another mod or a game update).
   Turn the master switch off to confirm, then switch individual entries in
-  **Patched methods** off until it stops, and please report which one.
+  **Effects to remove** off until it stops (start with **Hit effects and slash marks**),
+  and please report which one.
 - **Some gore still shows up:** report where it happened and what you were doing.
 - **The mod does nothing after a game update:** the patches rely on internal class and
   method names, which can change. Check the log (`BepInEx/LogOutput.log`) for lines like
