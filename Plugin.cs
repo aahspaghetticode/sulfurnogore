@@ -10,7 +10,7 @@ using Ryuka.Sulfur.NativeUI;
 namespace SulfurNoGore
 {
     [BepInDependency("ryuka.sulfur.nativeui", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.henw.sulfurnogore", "Sulfur No Gore", "1.0.0")]
+    [BepInPlugin("com.henw.sulfurnogore", "Sulfur No Gore", "1.0.1")]
     public class Plugin : BaseUnityPlugin
     {
         internal static ManualLogSource Log;
