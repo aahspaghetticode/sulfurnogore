@@ -1,0 +1,46 @@
+[size=5][b]SULFUR No Gore[/b][/size]
+
+Removes the blood and gore effects from SULFUR, with an in-game options page so you can choose exactly what to turn off. Made for players who are sensitive to gore but still want to play.
+
+[size=4][b]What it removes[/b][/size]
+[list]
+[*]Blood splatters and blood projectiles
+[*]Gibs (body chunks) and gib explosions
+[*]Melee slash marks and bullet-hole decals
+[*]Blood hit effects when enemies take damage
+[/list]
+
+[size=4][b]What it does NOT remove[/b][/size]
+[list]
+[*]The red screen flash when you are hurt (removing it caused crashes)
+[*]The low-health dark pulse
+[*]Anything not listed above. Only the effects that were found and tested are covered, so some gore may still appear (boss fights, the death screen, special attacks). Please report any you see.
+[/list]
+
+[size=4][b]Requirements[/b][/size]
+[list]
+[*]BepInEx 5 for SULFUR
+[*]SULFUR Native UI Lib (required, it provides the options menu): https://www.nexusmods.com/sulfur/mods/88
+[/list]
+
+[size=4][b]Installation[/b][/size]
+[list=1]
+[*]Install BepInEx 5 and SULFUR Native UI Lib.
+[*]Extract this archive into your SULFUR game folder, so that SulfurNoGore.dll ends up in BepInEx/plugins/Sulfur_NoGore/.
+[*]Start the game.
+[/list]
+
+[size=4][b]Configuration[/b][/size]
+Open Options and find the [b]No Gore[/b] page. It has a master switch and one toggle per patched game method. Changes apply immediately. Settings are also saved in BepInEx/config/com.henw.sulfurnogore.cfg.
+
+[size=4][b]Troubleshooting[/b][/size]
+[list]
+[*]Enemies freeze, you can't die, or the console fills with NullReferenceException: turn the master switch off to confirm, then switch individual entries off until it stops, and report which one.
+[*]Nothing happens after a game update: the patches depend on internal names that can change. Check BepInEx/LogOutput.log for "Type not found" or "Method not found".
+[/list]
+
+[size=4][b]Source and bug reports[/b][/size]
+https://github.com/aahspaghetticode/sulfurnogore
+
+[size=4][b]Credits[/b][/size]
+Options page built with SULFUR Native UI Lib by ryuka. Patching via HarmonyX, included with BepInEx. MIT licensed.

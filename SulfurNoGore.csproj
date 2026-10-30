@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>SulfurNoGore</AssemblyName>
+    <RootNamespace>SulfurNoGore</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>embedded</DebugType>
+    <!-- Don't pull in Microsoft reference assemblies' extras; keep output to the one dll -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- BepInEx packages are not on nuget.org; they live on the BepInEx feed -->
+    <RestoreAdditionalProjectSources>https://nuget.bepinex.dev/v3/index.json</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Set this to your SULFUR install folder, or pass -p:GameDir="..." to dotnet build -->
+    <!-- ManagedDir = the folder that directly contains UnityEngine.dll, PerfectRandom.*.dll etc.
+         Here ../sulfur is a symlink to Sulfur_Data/Managed. Override with -p:ManagedDir=... -->
+    <ManagedDir Condition="'$(ManagedDir)' == ''">../sulfur</ManagedDir>
+    <!-- SULFUR Native UI Lib: expected next to this csproj. Override with -p:UiLibDll=... -->
+    <UiLibDll Condition="'$(UiLibDll)' == ''">$(MSBuildProjectDirectory)/SULFUR Native UI Lib.dll</UiLibDll>
+    <!-- GameDir is only used by the optional copy-to-plugins step below. -->
+    <GameDir Condition="'$(GameDir)' == ''"></GameDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference assemblies so net472 builds on Linux/Mac too -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+
+    <!-- BepInEx 5 (Mono) + Harmony. Swap for BepInEx 6 packages if the game uses BE/IL2CPP. -->
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Pull in every UnityEngine*.dll (UnityEngine.dll facade + CoreModule etc.).
+         Wildcards avoid guessing which modules exist and avoid path-case/backslash issues. -->
+    <Reference Include="$(ManagedDir)/UnityEngine*.dll" Private="false" />
+
+    <!-- SULFUR Native UI Lib (DLL in the project root by default, see UiLibDll above) -->
+    <Reference Include="SULFUR Native UI Lib">
+      <HintPath>$(UiLibDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Not required for the current Plugin.cs (it uses reflection), but handy once you
+         want to patch with typed [HarmonyPatch(typeof(...))] attributes. -->
+    <Reference Include="$(ManagedDir)/PerfectRandom.Sulfur.Core.dll" Private="false" />
+    <Reference Include="$(ManagedDir)/PerfectRandom.Sulfur.Gameplay.dll" Private="false" />
+  </ItemGroup>
+
+  <!-- Optional: copy the built dll straight into BepInEx/plugins after a build -->
+  <Target Name="CopyToPlugins" AfterTargets="Build" Condition="'$(GameDir)' != '' And Exists('$(GameDir)/BepInEx/plugins')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)/BepInEx/plugins" />
+  </Target>
+
+</Project>

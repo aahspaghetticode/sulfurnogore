@@ -1,0 +1,9 @@
+{
+  "name": "Sulfur_NoGore",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/aahspaghetticode/sulfurnogore",
+  "description": "Removes blood, gibs, slash marks and bullet holes from SULFUR. Every patch has its own toggle in the in-game options menu. Made for gore-sensitive players.",
+  "dependencies": [
+    "ryuka_labs-SULFUR_Native_UI_Lib-0.10.0"
+  ]
+}

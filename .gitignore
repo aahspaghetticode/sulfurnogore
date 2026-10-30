@@ -1,0 +1,5 @@
+bin/
+obj/
+dist/
+# Third-party library, not ours to redistribute. Download it from its own page.
+SULFUR Native UI Lib.dll
