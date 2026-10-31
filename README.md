@@ -10,13 +10,16 @@ still want to play.
 - Gibs (body chunks) and gib explosions
 - Melee slash marks and bullet-hole decals
 - Blood hit effects when enemies take damage
+- Pre-placed dead bodies that decorate levels (the "Man Corpse" type), which are hidden
+- Blood decals placed around level decorations such as graveyards (`ProjectedBlood`). The
+  skeletons and bones there are left as they are.
 - Optionally, any blood that is still shown is tinted brown, like dirt
 
 ## What it does **not** remove
 
 - The red screen flash when you are hurt. (Removing it caused crashes, so it is left alone.)
 - The low-health dark pulse.
-- Pre-placed dead bodies that exist as level decoration. These are not fixed yet.
+- Other kinds of pre-placed dead bodies. Only the "Man Corpse" decoration is hidden so far.
 - Anything not listed above. This mod only covers the effects that were found and tested,
   so some gore may still appear, for example in boss fights, the death screen, or special
   attacks. If you see any, please report it (see below).
@@ -39,10 +42,15 @@ Install with a mod manager (it will pull in the dependency), or manually:
 Open **Options** and look for the **No Gore** page. It has:
 
 - **Enable mod**: master switch for everything.
-- **Brown blood**: any blood that is still shown is tinted brown, like dirt.
+- **Brown blood**: every colour and material in the game's blood-red range (from `#961b1e`
+  up to the game's main blood red, and the shades between) is changed to a dirt brown.
+  Anything else that happens to use a colour in that range changes too.
 - **Effects to remove**: one switch per kind of effect (blood splatters, blood stains,
   gibs and body chunks, hit effects and slash marks, bullet holes). Switch one off if it
   causes problems, and the rest keep working. Changes apply immediately, no restart needed.
+- **Level blood decals**: hides the blood decals around level decorations such as graveyards.
+- **Dead bodies**: hides the pre-placed "Man Corpse" decorations in levels. Switch it off to
+  bring them back.
 
 The same settings are saved in `BepInEx/config/com.henw.sulfurnogore.cfg`.
 
