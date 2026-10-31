@@ -10,7 +10,7 @@ using Ryuka.Sulfur.NativeUI;
 namespace SulfurNoGore
 {
     [BepInDependency("ryuka.sulfur.nativeui", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.henw.sulfurnogore", "Sulfur No Gore", "1.0.3")]
+    [BepInPlugin("com.henw.sulfurnogore", "Sulfur No Gore", "1.0.4")]
     public class Plugin : BaseUnityPlugin
     {
         internal static ManualLogSource Log;
@@ -94,7 +94,8 @@ namespace SulfurNoGore
         private static readonly HashSet<UnityEngine.GameObject> HiddenCorpses =
             new HashSet<UnityEngine.GameObject>();
 
-        // Blood projected onto level decorations (graveyards etc.): objects named "ProjectedBlood*".
+        // Blood placed on level decorations (graveyards etc.): objects named "ProjectedBlood*"
+        // (decals) and "SpriteBlood*" (sprites).
         internal static ConfigEntry<bool> HideProjected;
         private static readonly HashSet<UnityEngine.GameObject> HiddenProjected =
             new HashSet<UnityEngine.GameObject>();
@@ -123,7 +124,7 @@ namespace SulfurNoGore
             Log = Logger;
             Enabled = Config.Bind("General", "Enable mod", true, "Master switch for every effect below.");
             HideProjected = Config.Bind("Effects", "Level blood decals", true,
-                "Hides the blood decals placed around level decorations such as graveyards (ProjectedBlood).");
+                "Hides the blood decals placed around level decorations such as graveyards (ProjectedBlood and SpriteBlood).");
             HideCorpses = Config.Bind("Effects", "Dead bodies", true,
                 "Hides the pre-placed dead bodies (Man Corpse) that decorate levels.");
             BrownBlood = Config.Bind("General", "Brown blood", true,
@@ -421,7 +422,7 @@ namespace SulfurNoGore
             }
         }
 
-        // ---- Level blood decals ("ProjectedBlood*") ----
+        // ---- Level blood decals ("ProjectedBlood*" and "SpriteBlood*") ----
         // Everything else in the same folder (skeletons, graves, ...) is left alone.
 
         private void HideProjectedTick()
@@ -445,7 +446,8 @@ namespace SulfurNoGore
             {
                 if (t == null) continue;
                 var go = t.gameObject;
-                if (go.name.StartsWith("ProjectedBlood") && HiddenProjected.Add(go))
+                if ((go.name.StartsWith("ProjectedBlood") || go.name.StartsWith("SpriteBlood"))
+                    && HiddenProjected.Add(go))
                     go.SetActive(false);
             }
         }
@@ -494,7 +496,7 @@ namespace SulfurNoGore
             foreach (var group in Groups)
                 AddToggle(ctx, group.Entry, group.Label, group.Description);
             AddToggle(ctx, HideProjected, "Level blood decals",
-                "Hides the blood decals placed around level decorations such as graveyards (ProjectedBlood).");
+                "Hides the blood decals placed around level decorations such as graveyards (ProjectedBlood and SpriteBlood).");
             AddToggle(ctx, HideCorpses, "Dead bodies",
                 "Hides the pre-placed dead bodies (Man Corpse) that decorate levels.");
         }

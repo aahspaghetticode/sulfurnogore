@@ -23,3 +23,7 @@
 - "Brown blood" now changes every colour field and material colour in the game's blood-red range to a dirt brown, not just blood data handed out by units. The range runs from `#961b1e` up to the game's blood red (0.64, 0.11, 0.13) and includes the shades between. The original colours are restored if you turn the option off.
 - New "Dead bodies" option: hides the pre-placed "Man Corpse" dead bodies that decorate levels. Other kinds of dead bodies are not covered yet.
 - New "Level blood decals" option: hides the blood decals (`ProjectedBlood`) placed around level decorations such as graveyards. Skeletons and bones are left as they are.
+
+## 1.0.4
+
+- "Level blood decals" now also hides the blood sprites (`SpriteBlood`) around level decorations such as graveyards.
